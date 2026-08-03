@@ -1,0 +1,1444 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rupal Thakuria — Chief Marketing Officer & Brand Builder</title>
+
+    <!-- Feminine & Editorial Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍉</text></svg>">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- GSAP Animation Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        canvas: '#FFF5F8',
+                        surface: '#FFFFFF',
+                        ink: '#2A1828',
+                        muted: '#7A6877',
+                        rose: {
+                            50: '#FFF0F5',
+                            100: '#FFE4EC',
+                            200: '#FCD1DF',
+                            400: '#FF6B8B',
+                            500: '#E83E8C',
+                            600: '#D62246',
+                        },
+                        plum: '#8A2387',
+                        lavender: '#E8D7F1',
+                        line: 'rgba(232, 62, 140, 0.12)',
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        script: ['"Great Vibes"', 'cursive'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'hero-gradient': 'linear-gradient(135deg, #FF758C 0%, #8A2387 50%, #E83E8C 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #FFF5F8;
+            color: #2A1828;
+        }
+
+        ::selection {
+            background: #FF6B8B;
+            color: #FFFFFF;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #FF6B8B 0%, #8A2387 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 30px -10px rgba(138, 35, 137, 0.08);
+        }
+
+        .glass-dark {
+            background: rgba(42, 24, 40, 0.92);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 107, 139, 0.2);
+        }
+
+        .eyebrow {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.6rem;
+            color: #E83E8C;
+            line-height: 1;
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+        }
+
+        .brand-card {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+
+        .brand-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 20px 40px -15px rgba(255, 107, 139, 0.25);
+        }
+
+        .pink-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .pink-btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #8A2387 0%, #FF6B8B 100%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            z-index: 0;
+        }
+
+        .pink-btn:hover::after {
+            opacity: 1;
+        }
+
+        .pink-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Giant Background Typography for Hero Image Overlay */
+        .hero-bg-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            font-style: italic;
+            line-height: 0.85;
+            color: rgba(232, 62, 140, 0.08);
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #FFF5F8;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #FF6B8B;
+            border-radius: 99px;
+        }
+
+        /* ============ NEW: petal / sparkle ambient motion ============ */
+        .petal {
+            position: absolute;
+            top: -40px;
+            border-radius: 60% 40% 65% 35% / 55% 45% 55% 45%;
+            background: linear-gradient(135deg, #FFC1D6, #FF6B8B);
+            opacity: 0.55;
+            pointer-events: none;
+        }
+
+        .sparkle-dot {
+            position: absolute;
+            border-radius: 50%;
+            background: #FF6B8B;
+            opacity: 0.5;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .petal,
+            .sparkle-dot {
+                display: none;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* PDF section */
+        .pdf-page {
+            aspect-ratio: 3/4;
+            background: linear-gradient(160deg, #ffffff 0%, #FFF0F5 100%);
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-canvas text-ink antialiased overflow-x-hidden">
+
+    <!-- Ambient Glows -->
+    <div
+        class="fixed top-0 left-1/4 w-[500px] h-[500px] bg-rose-400/20 rounded-full blur-[120px] pointer-events-none z-0">
+    </div>
+    <div
+        class="fixed bottom-0 right-10 w-[600px] h-[600px] bg-plum/10 rounded-full blur-[150px] pointer-events-none z-0">
+    </div>
+
+    <!-- Ambient floating petals (behind everything, decorative only) -->
+    <div id="petal-field" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+    <!-- ================= NAVIGATION BAR ================= -->
+    <header id="top" class="fixed top-0 inset-x-0 z-50 backdrop-blur-md bg-canvas/70 border-b border-rose-100/80">
+        <div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
+
+            <!-- Logo -->
+            <!-- <a href="#top" class="font-serif font-bold text-2xl tracking-tight flex items-center gap-3 group">
+                <span
+                    class="w-10 h-10 rounded-full bg-hero-gradient flex items-center justify-center text-white font-sans text-sm font-bold shadow-md shadow-rose-400/30 group-hover:scale-105 transition-transform">RT</span>
+                <span class="text-ink font-serif font-semibold group-hover:text-rose-500 transition-colors">Rupal
+                    Thakuria</span>
+            </a> -->
+            <!-- Logo / Instagram Link -->
+            <!-- Logo / Instagram Link -->
+            <a href="https://www.instagram.com/ruuuii.ontherun?igsh=MXR6d3hlZm1tbXdxbg==" target="_blank"
+                rel="noopener noreferrer"
+                class="font-serif font-bold text-2xl tracking-tight flex items-center gap-3 group">
+
+                <!-- Image Logo Container with Instagram Badge -->
+                <div class="relative flex-shrink-0">
+                    <!-- Profile Picture -->
+                    <div
+                        class="w-10 h-10 rounded-full overflow-hidden shadow-md shadow-rose-400/30 ring-2 ring-rose-200 group-hover:scale-105 transition-transform">
+                        <img src="./assets/logo-image.jpeg" alt="Rupal Thakuria" class="w-full h-full object-cover">
+                    </div>
+
+                    <!-- Instagram Badge Overlay -->
+                    <div
+                        class="absolute -bottom-1 -right-1 bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white p-1 rounded-full shadow-sm ring-2 ring-white group-hover:scale-110 transition-transform">
+                        <svg class="w-2.5 h-2.5 fill-current" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Name -->
+                <span class="text-ink font-serif font-semibold group-hover:text-rose-500 transition-colors">
+                    Rupal Thakuria
+                </span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium text-ink/80">
+                <a href="#about" class="hover:text-rose-500 transition-colors">About</a>
+                <a href="#story" class="hover:text-rose-500 transition-colors">My Story</a>
+                <a href="#skills" class="hover:text-rose-500 transition-colors">Skills</a>
+                <a href="#process" class="hover:text-rose-500 transition-colors">Process</a>
+                <a href="#experience" class="hover:text-rose-500 transition-colors">Experience</a>
+                <a href="#brands" class="hover:text-rose-500 transition-colors">Work</a>
+                <a href="#portfolio-pdf" class="hover:text-rose-500 transition-colors">Portfolio</a>
+                <a href="#comments" class="hover:text-rose-500 transition-colors">Reviews</a>
+            </nav>
+
+            <!-- Header CTA Button -->
+            <div class="hidden lg:flex items-center">
+                <a href="#contact"
+                    class="pink-btn bg-hero-gradient text-white shadow-md shadow-rose-400/20 rounded-full px-6 py-2.5 text-xs font-semibold tracking-wider uppercase">
+                    <span>Let's talk ✨</span>
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Toggle -->
+            <button id="mobile-toggle" class="lg:hidden p-2 text-ink focus:outline-none" aria-label="Toggle Menu">
+                <svg id="menu-icon" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu"
+            class="hidden lg:hidden bg-canvas/95 backdrop-blur-lg border-b border-rose-100 px-6 py-6 space-y-4 max-h-[calc(100vh-5rem)] overflow-y-auto">
+            <a href="#about" class="block text-base font-medium text-ink hover:text-rose-500">About</a>
+            <a href="#story" class="block text-base font-medium text-ink hover:text-rose-500">My Story</a>
+            <a href="#skills" class="block text-base font-medium text-ink hover:text-rose-500">Skills</a>
+            <a href="#process" class="block text-base font-medium text-ink hover:text-rose-500">Process</a>
+            <a href="#experience" class="block text-base font-medium text-ink hover:text-rose-500">Experience</a>
+            <a href="#brands" class="block text-base font-medium text-ink hover:text-rose-500">Work</a>
+            <a href="#portfolio-pdf" class="block text-base font-medium text-ink hover:text-rose-500">Portfolio</a>
+            <a href="#comments" class="block text-base font-medium text-ink hover:text-rose-500">Reviews</a>
+            <a href="#contact"
+                class="inline-block pink-btn bg-hero-gradient text-white rounded-full px-6 py-2.5 text-xs font-semibold uppercase tracking-wider w-full text-center mt-2">
+                <span>Let's talk ✨</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- ================= HERO WITH IMAGE BEHIND TEXT ================= -->
+    <section class="relative min-h-screen flex flex-col justify-center pt-28 pb-12 px-6 md:px-10 overflow-hidden">
+
+        <div class="max-w-7xl mx-auto w-full grid lg:grid-cols-12 gap-8 items-center relative z-10">
+
+            <!-- Hero Left Text Column -->
+            <div class="lg:col-span-7 z-20">
+                <div
+                    class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card border border-rose-200 text-rose-500 text-xs font-medium mb-6 hero-item shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span> Chief Marketing Officer &
+                    Digital Strategist
+                </div>
+
+                <h1 class="font-serif leading-[1.05] tracking-tight hero-item text-ink">
+                    <span class="block text-4xl sm:text-6xl md:text-7xl font-normal italic">Turning ideas into</span>
+                    <span class="block text-5xl sm:text-7xl md:text-8xl font-bold text-gradient">impactful
+                        brands.</span>
+                </h1>
+
+                <p class="mt-6 max-w-xl text-muted text-base sm:text-lg leading-relaxed font-sans hero-item">
+                    I am Rupal Thakuria—a brand builder, CMO, and strategist from Guwahati, Assam. I blend aesthetic
+                    creative direction, content strategy, Meta ads, and local SEO to help businesses grow with purpose.
+                </p>
+
+                <div class="mt-8 flex flex-wrap gap-4 hero-item">
+                    <a href="#contact"
+                        class="pink-btn bg-hero-gradient text-white shadow-xl shadow-rose-400/30 rounded-full px-8 py-4 font-semibold text-sm whitespace-nowrap">
+                        <span>Start a project ✨</span>
+                    </a>
+                    <a href="#portfolio-pdf"
+                        class="glass-card hover:bg-white text-ink border border-rose-200 rounded-full px-8 py-4 font-semibold text-sm transition-all shadow-sm">
+                        Download Portfolio
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Right Image Column with Layered Text Behind -->
+            <div class="lg:col-span-5 relative flex items-center justify-center min-h-[420px] sm:min-h-[500px]">
+
+                <!-- LAYER 1: Giant Background Watermark Text Behind Photo -->
+                <div
+                    class="absolute inset-0 flex flex-col justify-center items-center z-0 pointer-events-none select-none">
+                    <span class="hero-bg-text text-7xl sm:text-9xl tracking-tighter">RUPAL</span>
+                    <span class="hero-bg-text text-6xl sm:text-8xl tracking-widest text-rose-300/30">THAKURIA</span>
+                    <span class="hero-bg-text text-5xl sm:text-7xl tracking-tight text-plum/20">STRATEGIST</span>
+                </div>
+
+                <!-- LAYER 2: Decorative Backing Card -->
+                <div
+                    class="absolute w-[80%] h-[85%] rounded-3xl bg-gradient-to-tr from-rose-200/40 via-lavender/30 to-white/60 blur-xl z-0">
+                </div>
+
+                <!-- LAYER 3: Portrait Image Overlay -->
+                <div class="relative z-10 w-full max-w-[340px] sm:max-w-[400px] flex justify-center">
+                    <img src="./assets/hero-image.jpeg" alt="Rupal Thakuria - Chief Marketing Officer"
+                        class="w-full h-auto object-contain drop-shadow-2xl rounded-2xl transform hover:scale-[1.02] transition-transform duration-500" />
+                </div>
+
+                <!-- LAYER 4: Floating Badge -->
+                <div
+                    class="absolute bottom-4 right-2 sm:right-6 z-20 glass-card p-4 rounded-2xl border border-white/80 shadow-lg max-w-[180px]">
+                    <div class="eyebrow text-base mb-0">Rupal Thakuria</div>
+                    <p class="text-[11px] text-muted font-medium mt-1">Open to full-time Brand & Marketing roles</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="mt-16 md:mt-20 border-y border-rose-100 py-4 overflow-hidden relative z-10 bg-white shadow-sm">
+            <div class="marquee-track" id="marquee1"></div>
+        </div>
+    </section>
+
+    <!-- ================= ABOUT ME ================= -->
+    <section id="about" class="px-6 md:px-10 py-20 md:py-32 relative">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-10 md:gap-6 items-center">
+
+            <div class="md:col-span-5 fade-up">
+                <div class="eyebrow mb-1">About Me</div>
+                <h2 class="font-serif font-bold text-4xl sm:text-5xl md:text-6xl leading-tight">
+                    Creative direction backed by <span class="text-gradient italic font-normal">data-driven ROI.</span>
+                </h2>
+            </div>
+
+            <div class="md:col-span-7 md:col-start-6 fade-up space-y-6 text-muted text-base md:text-lg leading-relaxed">
+                <p>
+                    I am a digital marketing professional passionate about building brands, creating impactful marketing
+                    strategies, and helping businesses grow online. My expertise spans social media marketing, branding,
+                    content strategy, performance marketing, local SEO, website coordination, and business development.
+                </p>
+                <p>
+                    I enjoy turning ideas into brands through creative content, data-driven decisions, and consistent
+                    digital growth. Beyond the campaigns and carousels, I'm someone who loves to sketch and think
+                    differently — creativity has always been part of who I am.
+                </p>
+
+                <!-- Stat Counter Cards -->
+                <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
+                    <div class="glass-card p-5 rounded-2xl border border-white text-center">
+                        <div class="font-serif text-3xl md:text-4xl font-bold text-plum stat-number" data-count="100">0
+                        </div>
+                        <div class="text-xs text-muted uppercase tracking-wider font-semibold mt-1">+ Posts</div>
+                    </div>
+                    <div class="glass-card p-5 rounded-2xl border border-white text-center">
+                        <div class="font-serif text-3xl md:text-4xl font-bold text-plum stat-number" data-count="50">0
+                        </div>
+                        <div class="text-xs text-muted uppercase tracking-wider font-semibold mt-1">+ Carousels</div>
+                    </div>
+                    <div class="glass-card p-5 rounded-2xl border border-white text-center">
+                        <div class="font-serif text-3xl md:text-4xl font-bold text-plum stat-number" data-count="30">0
+                        </div>
+                        <div class="text-xs text-muted uppercase tracking-wider font-semibold mt-1">+ Campaigns</div>
+                    </div>
+                    <div class="glass-card p-5 rounded-2xl border border-white text-center">
+                        <div class="font-serif text-3xl md:text-4xl font-bold text-plum stat-number" data-count="3">0
+                        </div>
+                        <div class="text-xs text-muted uppercase tracking-wider font-semibold mt-1">Brands Led</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= MY STORY ================= -->
+    <section id="story" class="px-6 md:px-10 py-20 md:py-32 bg-white/50 backdrop-blur-md border-y border-rose-100">
+        <div class="max-w-5xl mx-auto">
+
+            <div class="text-center max-w-2xl mx-auto mb-16 fade-up">
+                <div class="eyebrow mb-1">Resilience &amp; Growth</div>
+                <h2 class="font-serif font-bold text-4xl sm:text-5xl">
+                    My <span class="text-gradient italic font-normal">Personal Story</span>
+                </h2>
+                <p class="text-muted text-sm mt-3">Curiosity, resilience, and the determination to keep learning.</p>
+            </div>
+
+            <div class="space-y-8 fade-up">
+
+                <!-- Story Timeline Card 1 -->
+                <div class="glass-card p-8 rounded-3xl border border-white relative">
+                    <span
+                        class="text-xs font-mono font-semibold px-3 py-1 rounded-full bg-rose-100 text-plum inline-block mb-3">2021
+                        – 2022</span>
+                    <h3 class="font-serif text-2xl font-bold text-ink mb-2">Government &amp; Competitive Exam
+                        Foundations</h3>
+                    <p class="text-muted text-base leading-relaxed">
+                        I began my professional career as a <strong>Typist at the Assam Legislative Assembly</strong>,
+                        where I developed discipline, attention to detail, and the ability to work accurately under
+                        pressure. During this period, I prepared for the <strong>APSC (Assam Public Service Combined
+                            Competitive) Examination</strong>. Through dedication, I cleared the Preliminary Examination
+                        twice and the Mains Examination once. While I came close to achieving that goal, the experience
+                        taught me perseverance, patience, and the importance of continuous self-improvement.
+                    </p>
+                </div>
+
+                <!-- Story Timeline Card 2 -->
+                <div class="glass-card p-8 rounded-3xl border border-white relative">
+                    <span
+                        class="text-xs font-mono font-semibold px-3 py-1 rounded-full bg-rose-100 text-plum inline-block mb-3">March
+                        2025 – November 2025</span>
+                    <h3 class="font-serif text-2xl font-bold text-ink mb-2">Pivoting to Digital Marketing &amp;
+                        Exploration</h3>
+                    <p class="text-muted text-base leading-relaxed">
+                        Realizing my true passion lay in creativity, strategy, and building brands, I transitioned into
+                        Digital Marketing as a Executive at <strong>Guwahati Metro Hospital</strong>. Every project
+                        strengthened my hands-on skills in social media, branding, and campaigns. In November 2025, I
+                        stepped outside my comfort zone to travel, explore new places, and experience different
+                        cultures—broadening my perspective and helping me better understand human psychology, an
+                        invaluable asset in marketing.
+                    </p>
+                </div>
+
+                <!-- Story Timeline Card 3 -->
+                <div class="glass-card p-8 rounded-3xl border border-white relative">
+                    <span
+                        class="text-xs font-mono font-semibold px-3 py-1 rounded-full bg-rose-100 text-plum inline-block mb-3">Present</span>
+                    <h3 class="font-serif text-2xl font-bold text-ink mb-2">Rising to Chief Marketing Officer (CMO)</h3>
+                    <p class="text-muted text-base leading-relaxed">
+                        I joined <strong>ING INFOMIX</strong> as an Operations Executive. Through consistent
+                        performance, taking ownership, and driving strategic results, I was promoted to Digital
+                        Marketing Head, and eventually to <strong>Chief Marketing Officer (CMO)</strong>. Today, I lead
+                        marketing strategies, oversee brand transformations, manage creative teams, and help businesses
+                        share their unique stories with the world.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= SKILLS & SERVICES ================= -->
+    <section id="skills" class="px-6 md:px-10 py-20 md:py-32">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-12 gap-10">
+
+            <div class="md:col-span-4 fade-up">
+                <div class="eyebrow mb-1">Core Expertise</div>
+                <h2 class="font-serif font-bold text-4xl md:text-5xl leading-tight mb-4">
+                    Services &amp; <br /><span class="italic font-normal text-gradient">Skillsets.</span>
+                </h2>
+                <p class="text-muted leading-relaxed text-sm md:text-base">
+                    From comprehensive strategy to hands-on execution across digital channels.
+                </p>
+            </div>
+
+            <div class="md:col-span-8">
+                <div class="grid sm:grid-cols-2 gap-4 fade-up">
+
+                    <div class="glass-card p-5 rounded-xl border border-rose-100">
+                        <h4 class="font-serif font-bold text-lg text-ink">Digital Marketing Strategy</h4>
+                        <p class="text-xs text-muted mt-1">Full-funnel planning, brand positioning, and digital
+                            campaigns.</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-xl border border-rose-100">
+                        <h4 class="font-serif font-bold text-lg text-ink">Social Media Management</h4>
+                        <p class="text-xs text-muted mt-1">Monthly content calendars, engagement, and profile growth.
+                        </p>
+                    </div>
+                    <div class="glass-card p-5 rounded-xl border border-rose-100">
+                        <h4 class="font-serif font-bold text-lg text-ink">Meta Ads &amp; Lead Generation</h4>
+                        <p class="text-xs text-muted mt-1">Paid advertising campaigns with performance tracking &amp;
+                            ROI optimization.</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-xl border border-rose-100">
+                        <h4 class="font-serif font-bold text-lg text-ink">Google Business &amp; Local SEO</h4>
+                        <p class="text-xs text-muted mt-1">Keyword optimization, reviews, and local search visibility.
+                        </p>
+                    </div>
+                    <div class="glass-card p-5 rounded-xl border border-rose-100">
+                        <h4 class="font-serif font-bold text-lg text-ink">Content &amp; Graphic Direction</h4>
+                        <p class="text-xs text-muted mt-1">Educational carousels, Canva design, and visual brand
+                            identity.</p>
+                    </div>
+                    <div class="glass-card p-5 rounded-xl border border-rose-100">
+                        <h4 class="font-serif font-bold text-lg text-ink">Website Redesign Strategy</h4>
+                        <p class="text-xs text-muted mt-1">Coordinating user experience, content structure, and
+                            development.</p>
+                    </div>
+
+                </div>
+
+                <!-- TOOLS I USE DAILY SECTION (ENLARGED CARDS) -->
+                <section id="tools" class="px-0 md:px-0 py-20 md:py-28 relative">
+                    <div class="max-w-7xl mx-auto">
+
+                        <div class="text-center max-w-2xl mx-auto mb-16 fade-up">
+                            <div class="eyebrow mb-1">Tech &amp; Stack</div>
+                            <h2 class="font-serif font-bold text-4xl sm:text-5xl text-ink">
+                                Tools I Use <span class="text-gradient italic font-normal">Daily</span>
+                            </h2>
+                            <p class="text-muted text-base mt-3">
+                                The core platforms and software driving strategy, analytics, design, and execution.
+                            </p>
+                        </div>
+
+                        <!-- Responsive Grid with Bigger Columns -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+                            <!-- Canva Card -->
+                            <div
+                                class="glass-card brand-card p-8 min-h-[220px] rounded-3xl flex flex-col items-center justify-center text-center border border-white/90 group">
+                                <div
+                                    class="w-16 h-16 rounded-2xl bg-teal-50 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-sm">
+                                    <svg class="w-10 h-10 text-[#00C4CC]" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm3.877 15.688c-1.39 1.39-3.267 1.848-4.996 1.306-.448-.142-.873-.346-1.26-.606-.23-.153-.356-.423-.314-.693.042-.27.243-.483.511-.532.226-.041.455.008.647.135.281.187.592.333.918.435 1.22.38 2.545.056 3.526-.925 1.055-1.055 1.258-2.651.503-3.957-.403-.7-.988-1.272-1.688-1.653-1.314-.716-2.909-.481-3.957.568-.456.456-.763 1.036-.884 1.668-.088.46.009.932.27 1.32.196.29.472.513.794.64.201.079.336.273.33.488-.006.216-.151.4-.358.466-.234.075-.487.054-.707-.058-.518-.263-.941-.663-1.222-1.157-.43-.757-.549-1.65-.333-2.49.231-.898.777-1.684 1.536-2.213 1.295-.902 2.993-.984 4.368-.212.982.552 1.761 1.4 2.224 2.428.618 1.37.422 2.96-.52 4.103z" />
+                                    </svg>
+                                </div>
+                                <h3 class="font-serif font-bold text-2xl text-ink">Canva</h3>
+                                <p class="text-sm text-muted mt-1.5 font-medium">Design &amp; Visual Assets</p>
+                            </div>
+
+                            <!-- Meta Ads Card -->
+                            <div
+                                class="glass-card brand-card p-8 min-h-[220px] rounded-3xl flex flex-col items-center justify-center text-center border border-white/90 group">
+                                <div
+                                    class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-sm">
+                                    <svg class="w-10 h-10 text-[#0668E1]" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                                    </svg>
+                                </div>
+                                <h3 class="font-serif font-bold text-2xl text-ink">Meta Ads</h3>
+                                <p class="text-sm text-muted mt-1.5 font-medium">Paid Performance &amp; Growth</p>
+                            </div>
+
+                            <!-- Analytics Card -->
+                            <div
+                                class="glass-card brand-card p-8 min-h-[220px] rounded-3xl flex flex-col items-center justify-center text-center border border-white/90 group">
+                                <div
+                                    class="w-16 h-16 rounded-2xl bg-amber-50 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-sm">
+                                    <svg class="w-10 h-10 text-[#E37400]" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm0 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10zm1-15h-2v6h2V7zm0 8h-2v2h2v-2z" />
+                                    </svg>
+                                </div>
+                                <h3 class="font-serif font-bold text-2xl text-ink">Google Analytics</h3>
+                                <p class="text-sm text-muted mt-1.5 font-medium">Data Tracking &amp; ROI</p>
+                            </div>
+
+                            <!-- Figma Card -->
+                            <div
+                                class="glass-card brand-card p-8 min-h-[220px] rounded-3xl flex flex-col items-center justify-center text-center border border-white/90 group">
+                                <div
+                                    class="w-16 h-16 rounded-2xl bg-purple-50 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-sm">
+                                    <svg class="w-10 h-10" viewBox="0 0 38 57" fill="none">
+                                        <path
+                                            d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z"
+                                            fill="#1ABCFE" />
+                                        <path
+                                            d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z"
+                                            fill="#0ACF83" />
+                                        <path
+                                            d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z"
+                                            fill="#FF7262" />
+                                        <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z"
+                                            fill="#F24E1E" />
+                                        <path
+                                            d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z"
+                                            fill="#A259FF" />
+                                    </svg>
+                                </div>
+                                <h3 class="font-serif font-bold text-2xl text-ink">Figma</h3>
+                                <p class="text-sm text-muted mt-1.5 font-medium">UI/UX &amp; Prototyping</p>
+                            </div>
+
+                            <!-- WordPress Card -->
+                            <div
+                                class="glass-card brand-card p-8 min-h-[220px] rounded-3xl flex flex-col items-center justify-center text-center border border-white/90 group">
+                                <div
+                                    class="w-16 h-16 rounded-2xl bg-sky-50 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-sm">
+                                    <svg class="w-10 h-10 text-[#21759B]" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm.668 21.654c-1.39 0-2.673-.341-3.805-.944l3.522-10.22 3.633 10.02c-1.077.728-2.327 1.144-3.35 1.144zm-7.662-9.654c0-2.03.623-3.905 1.684-5.461l4.083 11.23c-3.39-1.053-5.767-4.143-5.767-5.769zm13.313 0c0 1.25-.262 2.433-.732 3.502l-2.083-6.208 2.052-5.632c.48 1.07.763 2.253.763 3.5020v9.838zM12 2.346c2.408 0 4.606.88 6.286 2.328l-2.502 6.873-2.525-6.938c.883-.173 1.796-.263 2.741-.263z" />
+                                    </svg>
+                                </div>
+                                <h3 class="font-serif font-bold text-2xl text-ink">WordPress</h3>
+                                <p class="text-sm text-muted mt-1.5 font-medium">CMS &amp; Web Management</p>
+                            </div>
+
+                            <!-- Notion Card -->
+                            <div
+                                class="glass-card brand-card p-8 min-h-[220px] rounded-3xl flex flex-col items-center justify-center text-center border border-white/90 group">
+                                <div
+                                    class="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-sm">
+                                    <svg class="w-10 h-10 text-[#000000]" viewBox="0 0 24 24" fill="currentColor">
+                                        <path
+                                            d="M4.459 4.208c.746.606 1.026.56 2.428.466l11.393-.7c.186 0 .326-.14.28-.326-.093-.327-.42-.653-.886-.606L5.858 3.835c-.793.047-1.12.14-1.399.373zm.886 3.682v11.758c0 .886.42 1.259 1.493 1.213l11.859-.7c1.073-.047 1.213-.606 1.213-1.446V6.957c0-.84-.326-1.259-1.213-1.213l-11.859.7c-1.073.047-1.493.42-1.493 1.446zm11.346.746c.093.373.047.746-.326.793l-.84.14v8.118c0 .653-.326.886-.886.933l-2.332.14c-.14 0-.28-.093-.326-.233l-3.359-5.132v4.573l1.12.28c.186.047.28.233.233.42l-.047.14-2.286.14c-.186 0-.326-.14-.28-.326l.14-.513V9.243c0-.513.233-.793.746-.84l2.568-.186c.28 0 .466.14.606.373l3.265 4.992V9.383l-1.026-.14c-.186-.047-.28-.233-.233-.42l.047-.14 2.892-.186z" />
+                                    </svg>
+                                </div>
+                                <h3 class="font-serif font-bold text-2xl text-ink">Notion</h3>
+                                <p class="text-sm text-muted mt-1.5 font-medium">Strategy &amp; Workspace</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= MARKETING PROCESS (NEW) ================= -->
+    <section id="process" class="px-6 md:px-10 py-20 md:py-32 bg-white/50 backdrop-blur-md border-y border-rose-100">
+        <div class="max-w-6xl mx-auto">
+
+            <div class="text-center max-w-2xl mx-auto mb-16 fade-up">
+                <div class="eyebrow mb-1">How I Work</div>
+                <h2 class="font-serif font-bold text-4xl sm:text-5xl">
+                    My <span class="text-gradient italic font-normal">Marketing Process</span>
+                </h2>
+                <p class="text-muted text-sm mt-3">A repeatable path from brand analysis to optimization — in that
+                    order, every time.</p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-10 fade-up relative">
+                <div
+                    class="hidden sm:block absolute top-6 left-[12%] right-[12%] h-px bg-gradient-to-r from-transparent via-rose-300 to-transparent">
+                </div>
+
+                <div class="relative text-center px-2">
+                    <div
+                        class="w-12 h-12 mx-auto rounded-full bg-hero-gradient text-white font-serif font-bold flex items-center justify-center mb-4 shadow-md shadow-rose-400/30 relative z-10">
+                        1</div>
+                    <h4 class="font-serif font-bold text-base text-ink">Brand Analysis</h4>
+                </div>
+                <div class="relative text-center px-2">
+                    <div
+                        class="w-12 h-12 mx-auto rounded-full bg-hero-gradient text-white font-serif font-bold flex items-center justify-center mb-4 shadow-md shadow-rose-400/30 relative z-10">
+                        2</div>
+                    <h4 class="font-serif font-bold text-base text-ink">Competitor Research</h4>
+                </div>
+                <div class="relative text-center px-2">
+                    <div
+                        class="w-12 h-12 mx-auto rounded-full bg-hero-gradient text-white font-serif font-bold flex items-center justify-center mb-4 shadow-md shadow-rose-400/30 relative z-10">
+                        3</div>
+                    <h4 class="font-serif font-bold text-base text-ink">Marketing Strategy</h4>
+                </div>
+                <div class="relative text-center px-2">
+                    <div
+                        class="w-12 h-12 mx-auto rounded-full bg-hero-gradient text-white font-serif font-bold flex items-center justify-center mb-4 shadow-md shadow-rose-400/30 relative z-10">
+                        4</div>
+                    <h4 class="font-serif font-bold text-base text-ink">Content Planning</h4>
+                </div>
+                <div class="relative text-center px-2">
+                    <div
+                        class="w-12 h-12 mx-auto rounded-full bg-hero-gradient text-white font-serif font-bold flex items-center justify-center mb-4 shadow-md shadow-rose-400/30 relative z-10">
+                        5</div>
+                    <h4 class="font-serif font-bold text-base text-ink">Creative Development</h4>
+                </div>
+                <div class="relative text-center px-2">
+                    <div
+                        class="w-12 h-12 mx-auto rounded-full bg-hero-gradient text-white font-serif font-bold flex items-center justify-center mb-4 shadow-md shadow-rose-400/30 relative z-10">
+                        6</div>
+                    <h4 class="font-serif font-bold text-base text-ink">Campaign Execution</h4>
+                </div>
+                <div class="relative text-center px-2">
+                    <div
+                        class="w-12 h-12 mx-auto rounded-full bg-hero-gradient text-white font-serif font-bold flex items-center justify-center mb-4 shadow-md shadow-rose-400/30 relative z-10">
+                        7</div>
+                    <h4 class="font-serif font-bold text-base text-ink">Performance Tracking</h4>
+                </div>
+                <div class="relative text-center px-2">
+                    <div
+                        class="w-12 h-12 mx-auto rounded-full bg-hero-gradient text-white font-serif font-bold flex items-center justify-center mb-4 shadow-md shadow-rose-400/30 relative z-10">
+                        8</div>
+                    <h4 class="font-serif font-bold text-base text-ink">Optimization</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= WORK EXPERIENCE TIMELINE ================= -->
+    <section id="experience" class="px-6 md:px-10 py-20 md:py-32">
+        <div class="max-w-5xl mx-auto">
+
+            <div class="text-center max-w-xl mx-auto mb-16 fade-up">
+                <div class="eyebrow mb-1">Career Journey</div>
+                <h2 class="font-serif font-bold text-4xl sm:text-5xl">
+                    Professional <span class="text-gradient italic font-normal">Experience</span>
+                </h2>
+            </div>
+
+            <div class="space-y-8 fade-up">
+
+                <!-- Role 1 -->
+                <div class="glass-card p-8 rounded-3xl border border-white">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="font-serif text-2xl font-bold text-ink">Chief Marketing Officer (CMO)</h3>
+                            <p class="text-sm font-semibold text-rose-500">ING INFOMIX</p>
+                        </div>
+                        <span
+                            class="text-xs font-mono bg-rose-100 text-plum px-3 py-1 rounded-full self-start sm:self-auto">Present</span>
+                    </div>
+                    <ul class="list-disc list-inside text-sm text-muted space-y-2 leading-relaxed">
+                        <li>Lead the company's overall marketing strategy and brand positioning across clients.</li>
+                        <li>Oversee digital marketing operations, content strategy, and performance marketing.</li>
+                        <li>Coordinate website redesign and development projects.</li>
+                        <li>Guide creative and marketing teams to achieve client business objectives.</li>
+                        <li>Build client relationships and contribute directly to business development.</li>
+                        <li>Monitor campaign performance using analytics and optimize for better ROI.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="glass-card p-8 rounded-3xl border border-white">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="font-serif text-2xl font-bold text-ink">Digital Marketing Head &amp; Operations
+                                Executive</h3>
+                            <p class="text-sm font-semibold text-rose-500">ING INFOMIX</p>
+                        </div>
+                    </div>
+                    <ul class="list-disc list-inside text-sm text-muted space-y-2 leading-relaxed">
+                        <li>Planned and executed digital marketing strategies; supervised graphic designers and content
+                            creators.</li>
+                        <li>Optimized Google Business Profiles and improved local SEO; ran Meta advertising campaigns.
+                        </li>
+                        <li>Coordinated daily operations, project planning, and client communication before the
+                            promotion to CMO.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 3 -->
+                <div class="glass-card p-8 rounded-3xl border border-white">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="font-serif text-2xl font-bold text-ink">Digital Marketing Executive</h3>
+                            <p class="text-sm font-semibold text-rose-500">Guwahati Metro Hospital</p>
+                        </div>
+                        <span
+                            class="text-xs font-mono bg-rose-100 text-plum px-3 py-1 rounded-full self-start sm:self-auto">March
+                            2025 – November 2025</span>
+                    </div>
+                    <ul class="list-disc list-inside text-sm text-muted space-y-2 leading-relaxed">
+                        <li>Managed social media platforms and publishing schedules.</li>
+                        <li>Created engaging social content and designed marketing creatives.</li>
+                        <li>Assisted with Meta Ads and hospital lead generation campaigns.</li>
+                        <li>Performed keyword research, local SEO, and prepared marketing reports.</li>
+                    </ul>
+                </div>
+
+                <!-- Role 4 -->
+                <div class="glass-card p-8 rounded-3xl border border-white">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="font-serif text-2xl font-bold text-ink">Typist</h3>
+                            <p class="text-sm font-semibold text-rose-500">Assam Legislative Assembly</p>
+                        </div>
+                        <span
+                            class="text-xs font-mono bg-rose-100 text-plum px-3 py-1 rounded-full self-start sm:self-auto">2021
+                            – 2022 (1 Year)</span>
+                    </div>
+                    <ul class="list-disc list-inside text-sm text-muted space-y-2 leading-relaxed">
+                        <li>Prepared and typed official government documents with high precision and speed.</li>
+                        <li>Maintained confidential records and administrative documentation under strict deadlines.
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= FEATURED WORK / BRANDS ================= -->
+    <section id="brands" class="px-6 md:px-10 py-20 md:py-32 bg-white/50 backdrop-blur-md border-y border-rose-100">
+        <div class="max-w-7xl mx-auto">
+
+            <div class="text-center max-w-2xl mx-auto mb-16 fade-up">
+                <div class="eyebrow mb-1">Featured Clients</div>
+                <h2 class="font-serif font-bold text-4xl sm:text-5xl">
+                    Brands I've <span class="text-gradient italic font-normal">Worked On</span>
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <!-- Brand Card 1: ING INFOMIX -->
+                <div class="brand-card glass-card rounded-3xl overflow-hidden border border-white">
+                    <div class="h-56 overflow-hidden relative group p-6 flex flex-col justify-end">
+                        <!-- Image with subtle hover zoom -->
+                        <img src="assets/inginfomix.jpg" alt="ING Infomix Brand"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <!-- Gradient overlay for text legibility -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-0">
+                        </div>
+
+                        <span
+                            class="text-xs font-mono bg-plum text-white px-3 py-1 rounded-full absolute top-4 left-4 z-10">
+                            Business Development Agency
+                        </span>
+                        <h3 class="font-serif text-3xl font-bold text-white z-10">ING INFOMIX</h3>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <p class="text-muted text-sm">
+                            Developed complete brand strategy, Instagram &amp; Facebook marketing, company profile,
+                            carousel designs, and local SEO.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 pt-2">
+                            <span
+                                class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-rose-50 text-rose-500 border border-rose-100">Brand
+                                Strategy</span>
+                            <span
+                                class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-rose-50 text-rose-500 border border-rose-100">Company
+                                Profile</span>
+                            <span
+                                class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-rose-50 text-rose-500 border border-rose-100">Meta
+                                Ads</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brand Card 2: DIGIRHINO -->
+                <div class="brand-card glass-card rounded-3xl overflow-hidden border border-white md:mt-6">
+                    <div class="h-56 overflow-hidden relative group p-6 flex flex-col justify-end">
+                        <!-- Image with subtle hover zoom -->
+                        <img src="assets/digirhino.webp" alt="Digirhino Brand"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <!-- Gradient overlay for text legibility -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-0">
+                        </div>
+
+                        <span
+                            class="text-xs font-mono bg-plum text-white px-3 py-1 rounded-full absolute top-4 left-4 z-10">
+                            IT Service Brand
+                        </span>
+                        <h3 class="font-serif text-3xl font-bold text-white z-10">DIGIRHINO</h3>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <p class="text-muted text-sm">
+                            Executed monthly content strategy, educational carousels, lead generation ideas, and Google
+                            profile optimization.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 pt-2">
+                            <span
+                                class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-rose-50 text-rose-500 border border-rose-100">Carousels</span>
+                            <span
+                                class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-rose-50 text-rose-500 border border-rose-100">Lead
+                                Gen</span>
+                            <span
+                                class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-rose-50 text-rose-500 border border-rose-100">Local
+                                SEO</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brand Card 3: Driver NE -->
+                <div class="brand-card glass-card rounded-3xl overflow-hidden border border-white md:mt-12">
+                    <div class="h-56 overflow-hidden relative group p-6 flex flex-col justify-end">
+                        <!-- Image with subtle hover zoom -->
+                        <img src="assets/driverNE.jpg" alt="Driver NE Brand"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <!-- Gradient overlay for text legibility -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-0">
+                        </div>
+
+                        <span
+                            class="text-xs font-mono bg-plum text-white px-3 py-1 rounded-full absolute top-4 left-4 z-10">
+                            Driver Booking Platform
+                        </span>
+                        <h3 class="font-serif text-3xl font-bold text-white z-10">Driver NE</h3>
+                    </div>
+                    <div class="p-6 space-y-3">
+                        <p class="text-muted text-sm">
+                            Managed social media platforms, Google Business presence, content creation, and regional
+                            promotional campaigns.
+                        </p>
+                        <div class="flex flex-wrap gap-1.5 pt-2">
+                            <span
+                                class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-rose-50 text-rose-500 border border-rose-100">Social
+                                Media</span>
+                            <span
+                                class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-rose-50 text-rose-500 border border-rose-100">Promotions</span>
+                            <span
+                                class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-rose-50 text-rose-500 border border-rose-100">Growth</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ACHIEVEMENTS + WHY WORK WITH ME (NEW) ================= -->
+    <section class="px-6 md:px-10 py-20 md:py-32">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10">
+
+            <!-- Achievements -->
+            <div class="fade-up">
+                <div class="eyebrow mb-1">Milestones</div>
+                <h2 class="font-serif font-bold text-3xl sm:text-4xl mb-6">
+                    Achievements <span class="text-gradient italic font-normal">so far</span>
+                </h2>
+                <div class="glass-card p-6 sm:p-8 rounded-3xl border border-white space-y-3.5">
+                    <div class="flex items-start gap-3">
+                        <span class="text-rose-500 mt-0.5">✔</span>
+                        <p class="text-sm text-muted">Successfully managed multiple brands simultaneously</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-rose-500 mt-0.5">✔</span>
+                        <p class="text-sm text-muted">Improved Google Business visibility through keyword optimization
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-rose-500 mt-0.5">✔</span>
+                        <p class="text-sm text-muted">Led company branding initiatives and monthly content strategies
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-rose-500 mt-0.5">✔</span>
+                        <p class="text-sm text-muted">Coordinated website redevelopment projects end-to-end</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-rose-500 mt-0.5">✔</span>
+                        <p class="text-sm text-muted">Developed professional company profiles for client brands</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <span class="text-rose-500 mt-0.5">✔</span>
+                        <p class="text-sm text-muted">Managed creative and marketing teams toward shared goals</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Work With Me -->
+            <div class="fade-up">
+                <div class="eyebrow mb-1">The Fit</div>
+                <h2 class="font-serif font-bold text-3xl sm:text-4xl mb-6">
+                    Why Work <span class="text-gradient italic font-normal">With Me</span>
+                </h2>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="glass-card p-4 rounded-2xl border border-rose-100 text-center">
+                        <p class="text-sm font-semibold text-ink">Strategic Thinker</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl border border-rose-100 text-center">
+                        <p class="text-sm font-semibold text-ink">Creative Problem Solver</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl border border-rose-100 text-center">
+                        <p class="text-sm font-semibold text-ink">Fast Learner</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl border border-rose-100 text-center">
+                        <p class="text-sm font-semibold text-ink">Data-Driven Approach</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl border border-rose-100 text-center">
+                        <p class="text-sm font-semibold text-ink">Strong Leadership</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl border border-rose-100 text-center">
+                        <p class="text-sm font-semibold text-ink">End-to-End Ownership</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= PORTFOLIO PDF DOWNLOAD (NEW) ================= -->
+    <section id="portfolio-pdf"
+        class="px-6 md:px-10 py-20 md:py-32 bg-white/50 backdrop-blur-md border-y border-rose-100">
+        <div class="max-w-6xl mx-auto">
+
+            <!-- Section Header -->
+            <div class="text-center max-w-2xl mx-auto mb-16 fade-up">
+                <div class="eyebrow mb-1">Featured Documents</div>
+                <h2 class="font-serif font-bold text-4xl sm:text-5xl leading-tight mb-4">
+                    Explore My <span class="text-gradient italic font-normal">Work & Documentation</span>
+                </h2>
+                <p class="text-muted text-base leading-relaxed">
+                    Take a closer look at my real-world client proposals and company profiling work. You can preview
+                    them directly in your browser or download a copy for later.
+                </p>
+            </div>
+
+            <!-- Cards Grid for 2 PDFs -->
+            <div class="grid md:grid-cols-2 gap-8 items-stretch fade-up">
+
+                <!-- PDF 1: ATDC Technical Proposal -->
+                <div
+                    class="glass-card rounded-3xl p-8 border border-white flex flex-col justify-between shadow-xl shadow-rose-400/5 hover:shadow-rose-400/10 transition-all">
+                    <div>
+                        <!-- Icon & Tag -->
+                        <div class="flex items-center justify-between mb-6">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-hero-gradient flex items-center justify-center shadow-md shadow-rose-400/30">
+                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                            </div>
+                            <span
+                                class="text-xs font-mono bg-rose-100 text-rose-600 font-semibold px-3 py-1 rounded-full border border-rose-200">
+                                PDF Document
+                            </span>
+                        </div>
+
+                        <!-- Title & Details -->
+                        <h3 class="font-serif font-bold text-2xl text-ink mb-2">
+                            Digital Marketing Technical Proposal
+                        </h3>
+                        <p class="text-xs font-semibold text-rose-500 uppercase tracking-wider mb-3">
+                            Submitted to ATDC (Assam Tourism)
+                        </p>
+                        <p class="text-muted text-sm leading-relaxed mb-6">
+                            Comprehensive digital strategy proposal outlining social media campaigns, SEO, paid ads, and
+                            brand growth tactics for Tourism Development.
+                        </p>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap gap-3 pt-4 border-t border-rose-100/60">
+                        <a href="./assets/DIGITAL MARKETING TECHNICAL PROPOSAL for ATDC (1).pdf" target="_blank"
+                            rel="noopener"
+                            class="glass-card hover:bg-rose-500 hover:text-white text-ink border border-rose-200 rounded-full px-5 py-2.5 text-xs font-semibold transition-all shadow-sm flex-1 inline-flex items-center justify-center gap-1.5">
+                            <svg class="w-4 h-4 flex-shrink-0"
+                                style="display: inline-block !important; opacity: 1 !important;" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            <span style="color: inherit !important; display: inline !important;">View</span>
+                        </a>
+                        <a href="./assets/DIGITAL MARKETING TECHNICAL PROPOSAL for ATDC (1).pdf" download
+                            class="pink-btn bg-hero-gradient text-white hover:brightness-110 shadow-md shadow-rose-400/20 rounded-full px-5 py-2.5 text-xs font-semibold transition-all flex-1 inline-flex items-center justify-center gap-1.5">
+                            <svg class="w-4 h-4 flex-shrink-0"
+                                style="display: inline-block !important; opacity: 1 !important; stroke: #ffffff !important;"
+                                fill="none" stroke="#ffffff" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+                            </svg>
+                            <span style="color: #ffffff !important; display: inline !important;">Download</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PDF 2: Company Profile -->
+                <div
+                    class="glass-card rounded-3xl p-8 border border-white flex flex-col justify-between shadow-xl shadow-rose-400/5 hover:shadow-rose-400/10 transition-all">
+                    <div>
+                        <!-- Icon & Tag -->
+                        <div class="flex items-center justify-between mb-6">
+                            <div
+                                class="w-14 h-14 rounded-2xl bg-hero-gradient flex items-center justify-center shadow-md shadow-rose-400/30">
+                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                </svg>
+                            </div>
+                            <span
+                                class="text-xs font-mono bg-rose-100 text-rose-600 font-semibold px-3 py-1 rounded-full border border-rose-200">
+                                PDF Document
+                            </span>
+                        </div>
+
+                        <!-- Title & Details -->
+                        <h3 class="font-serif font-bold text-2xl text-ink mb-2">
+                            ING INFOMIX Company Profile
+                        </h3>
+                        <p class="text-xs font-semibold text-rose-500 uppercase tracking-wider mb-3">
+                            Digital Marketing &amp; Tech Solutions
+                        </p>
+                        <p class="text-muted text-sm leading-relaxed mb-6">
+                            Complete overview of services, IT capabilities, client portfolios, MSME/ISO certifications,
+                            and full marketing ecosystem solutions.
+                        </p>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap gap-3 pt-4 border-t border-rose-100/60">
+                        <a href="./assets/DM Company profile ING INFOMIX (2).pdf" target="_blank" rel="noopener"
+                            class="glass-card hover:bg-rose-500 hover:text-white text-ink border border-rose-200 rounded-full px-5 py-2.5 text-xs font-semibold transition-all shadow-sm flex-1 inline-flex items-center justify-center gap-1.5">
+                            <svg class="w-4 h-4 flex-shrink-0"
+                                style="display: inline-block !important; opacity: 1 !important;" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            <span style="color: inherit !important; display: inline !important;">View</span>
+                        </a>
+                        <a href="./assets/DM Company profile ING INFOMIX (2).pdf" download
+                            class="pink-btn bg-hero-gradient text-white hover:brightness-110 shadow-md shadow-rose-400/20 rounded-full px-5 py-2.5 text-xs font-semibold transition-all flex-1 inline-flex items-center justify-center gap-1.5">
+                            <svg class="w-4 h-4 flex-shrink-0"
+                                style="display: inline-block !important; opacity: 1 !important; stroke: #ffffff !important;"
+                                fill="none" stroke="#ffffff" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
+                            </svg>
+                            <span style="color: #ffffff !important; display: inline !important;">Download</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= COMMENTS / REVIEWS SECTION ================= -->
+    <section id="comments" class="px-6 md:px-10 py-20 md:py-32">
+        <div class="max-w-5xl mx-auto">
+
+            <div class="text-center max-w-xl mx-auto mb-16 fade-up">
+                <div class="eyebrow mb-1">Kind Words &amp; Feedback</div>
+                <h2 class="font-serif font-bold text-4xl sm:text-5xl">
+                    Client <span class="text-gradient italic font-normal">Reviews &amp; Comments</span>
+                </h2>
+                <p class="text-muted text-sm mt-3">Read feedback from collaborators or post your own comment below!</p>
+            </div>
+
+            <!-- Comments List -->
+            <div id="comments-container" class="space-y-6 mb-16 fade-up">
+
+                <div class="glass-card p-6 sm:p-8 rounded-3xl border border-rose-100 relative">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-rose-200 text-plum font-bold flex items-center justify-center font-serif text-lg">
+                                A
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-lg text-ink">Ananya Sharma</h4>
+                                <p class="text-xs text-muted">ING INFOMIX Partner</p>
+                            </div>
+                        </div>
+                        <div class="text-amber-400 text-sm">★★★★★</div>
+                    </div>
+                    <p class="text-muted text-sm leading-relaxed italic">
+                        "Rupal's strategic direction and leadership transformed our digital marketing presence
+                        completely. Her carousel designs and company profile work are top tier!"
+                    </p>
+                </div>
+
+                <div class="glass-card p-6 sm:p-8 rounded-3xl border border-rose-100 relative">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-10 h-10 rounded-full bg-rose-200 text-plum font-bold flex items-center justify-center font-serif text-lg">
+                                R
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-lg text-ink">Rahul Das</h4>
+                                <p class="text-xs text-muted">DIGIRHINO Team</p>
+                            </div>
+                        </div>
+                        <div class="text-amber-400 text-sm">★★★★★</div>
+                    </div>
+                    <p class="text-muted text-sm leading-relaxed italic">
+                        "The educational carousels and local SEO strategies Rupal implemented significantly increased
+                        our brand awareness and inbound leads."
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Add Comment Form -->
+            <div class="glass-card p-8 sm:p-10 rounded-3xl border border-rose-200 fade-up">
+                <h3 class="font-serif text-2xl font-bold mb-6 text-ink">Leave a Review or Message ✨</h3>
+                <form id="comment-form" class="space-y-4">
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-ink uppercase tracking-wider mb-2">Your
+                                Name</label>
+                            <input type="text" id="comment-name" required placeholder="e.g. Priyanshu Baruah"
+                                class="w-full px-4 py-3 rounded-2xl bg-white/80 border border-rose-200 focus:outline-none focus:border-rose-400 text-sm text-ink" />
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-ink uppercase tracking-wider mb-2">Role /
+                                Brand (Optional)</label>
+                            <input type="text" id="comment-role" placeholder="e.g. Business Owner"
+                                class="w-full px-4 py-3 rounded-2xl bg-white/80 border border-rose-200 focus:outline-none focus:border-rose-400 text-sm text-ink" />
+                        </div>
+                    </div>
+                    <div>
+                        <label
+                            class="block text-xs font-semibold text-ink uppercase tracking-wider mb-2">Message</label>
+                        <textarea id="comment-message" required rows="4"
+                            placeholder="Share your experience or thoughts..."
+                            class="w-full px-4 py-3 rounded-2xl bg-white/80 border border-rose-200 focus:outline-none focus:border-rose-400 text-sm text-ink"></textarea>
+                    </div>
+                    <button type="submit"
+                        class="pink-btn bg-hero-gradient text-white rounded-full px-8 py-3.5 text-xs font-semibold uppercase tracking-wider shadow-md shadow-rose-400/20">
+                        <span>Post Review ✨</span>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact" class="px-6 md:px-10 py-24 md:py-36 relative">
+        <div
+            class="max-w-5xl mx-auto glass-dark rounded-3xl p-8 sm:p-12 md:p-16 text-white text-center relative overflow-hidden shadow-2xl">
+
+            <div class="relative z-10">
+                <div class="eyebrow text-rose-300 mb-2">Get In Touch</div>
+                <h2 class="font-serif text-3xl sm:text-5xl md:text-6xl font-bold mb-8 leading-tight">
+                    Let's build something <span
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-rose-300 to-rose-500 italic font-normal">impactful</span>
+                    together.
+                </h2>
+
+                <div class="grid sm:grid-cols-3 gap-6 text-left max-w-3xl mx-auto my-10 pt-6 border-t border-white/10">
+                    <a href="mailto:rupalthakuria64@gmail.com" class="hover:text-rose-400 transition-colors">
+                        <div class="text-xs uppercase font-mono text-white/50 mb-1">Email</div>
+                        <div class="text-sm font-medium break-all">rupalthakuria64@gmail.com</div>
+                    </a>
+                    <a href="tel:7578827446" class="hover:text-rose-400 transition-colors">
+                        <div class="text-xs uppercase font-mono text-white/50 mb-1">Phone</div>
+                        <div class="text-sm font-medium">+91 75788 27446</div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/rupal-thakuria-5b3904356/" target="_blank" rel="noopener"
+                        class="hover:text-rose-400 transition-colors">
+                        <div class="text-xs uppercase font-mono text-white/50 mb-1">LinkedIn</div>
+                        <div class="text-sm font-medium">/rupal-thakuria</div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="px-6 md:px-10 py-8 border-t border-rose-100 text-center text-xs font-mono text-muted">
+        <p>© 2026 Rupal Thakuria · Chief Marketing Officer &amp; Digital Strategist ✨</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Nav Toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Updated Marquee Items with Icons
+        const marqueeItems = [
+            { label: "Chief Marketing Officer", icon: `<svg class="w-5 h-5 text-rose-500 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457-.39-2.823-1.07-4"></path></svg>` },
+            { label: "Digital Strategy", icon: `<svg class="w-5 h-5 text-plum inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path></svg>` },
+            { label: "Brand Building", icon: `<svg class="w-5 h-5 text-rose-500 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>` },
+            { label: "Meta Ads Campaigns", icon: `<svg class="w-5 h-5 text-plum inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>` },
+            { label: "Local SEO Optimization", icon: `<svg class="w-5 h-5 text-rose-500 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>` },
+            { label: "Google Business Profile", icon: `<svg class="w-5 h-5 text-plum inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>` }
+        ];
+
+        const marqueeEl = document.getElementById('marquee1');
+        let marqueeHtml = '';
+        for (let r = 0; r < 2; r++) {
+            marqueeItems.forEach(item => {
+                marqueeHtml += `
+        <span class="flex items-center font-serif text-lg md:text-xl px-8 whitespace-nowrap text-ink font-semibold">
+          ${item.icon}
+          ${item.label}
+          <span class="ml-8 w-1.5 h-1.5 rounded-full bg-rose-300 inline-block"></span>
+        </span>`;
+            });
+        }
+        marqueeEl.innerHTML = marqueeHtml;
+
+        // Comment Submission
+        const commentForm = document.getElementById('comment-form');
+        const commentsContainer = document.getElementById('comments-container');
+
+        commentForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('comment-name').value;
+            const role = document.getElementById('comment-role').value || 'Visitor';
+            const message = document.getElementById('comment-message').value;
+
+            const newComment = document.createElement('div');
+            newComment.className = 'glass-card p-6 sm:p-8 rounded-3xl border border-rose-100 relative';
+            newComment.innerHTML = `
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-rose-200 text-plum font-bold flex items-center justify-center font-serif text-lg">
+            ${name.charAt(0).toUpperCase()}
+          </div>
+          <div>
+            <h4 class="font-serif font-bold text-lg text-ink">${name}</h4>
+            <p class="text-xs text-muted">${role}</p>
+          </div>
+        </div>
+        <div class="text-amber-400 text-sm">★★★★★</div>
+      </div>
+      <p class="text-muted text-sm leading-relaxed italic">"${message}"</p>
+    `;
+
+            commentsContainer.prepend(newComment);
+            commentForm.reset();
+        });
+
+        // Ambient floating petals (feminine, subtle, respects reduced-motion via CSS)
+        (function spawnPetals() {
+            const field = document.getElementById('petal-field');
+            const count = window.innerWidth < 640 ? 6 : 12;
+            for (let i = 0; i < count; i++) {
+                const el = document.createElement('div');
+                const size = 8 + Math.random() * 14;
+                el.className = 'petal';
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.width = size + 'px';
+                el.style.height = size + 'px';
+                el.style.animationDelay = (Math.random() * 20) + 's';
+                field.appendChild(el);
+                gsap.to(el, {
+                    y: window.innerHeight + 100,
+                    x: '+=' + (Math.random() * 160 - 80),
+                    rotation: Math.random() * 360,
+                    duration: 14 + Math.random() * 10,
+                    repeat: -1,
+                    delay: Math.random() * 10,
+                    ease: 'none',
+                    onRepeat: function () {
+                        gsap.set(el, { y: -40, x: 0 });
+                    }
+                });
+            }
+        })();
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to("#marquee1", {
+            xPercent: -50,
+            repeat: -1,
+            duration: 25,
+            ease: "none"
+        });
+
+        gsap.timeline({ defaults: { ease: "power3.out" } })
+            .fromTo(".hero-item", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.9, stagger: 0.12, delay: 0.2 });
+
+        gsap.utils.toArray(".fade-up").forEach((el) => {
+            gsap.to(el, {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 88%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+
+        // Stat Counter
+        document.querySelectorAll(".stat-number").forEach((el) => {
+            const target = parseInt(el.getAttribute("data-count"), 10);
+            ScrollTrigger.create({
+                trigger: el,
+                start: "top 90%",
+                once: true,
+                onEnter: () => {
+                    let obj = { val: 0 };
+                    gsap.to(obj, {
+                        val: target,
+                        duration: 1.5,
+                        ease: "power2.out",
+                        onUpdate: () => { el.textContent = Math.round(obj.val); }
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
